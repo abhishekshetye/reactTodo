@@ -8,6 +8,8 @@ var Main = React.createClass({
 	getInitialState() {
 		
 		return {
+			showCompeleted: false,
+			searchText: '',
 			todos: [
 
 			{
@@ -23,6 +25,13 @@ var Main = React.createClass({
 
 	},
 
+	handleSearch: function(showCompeleted, searchText){
+		this.setState({
+			showCompeleted: showCompeleted,
+			searchText: searchText.toLowerCase()
+		});
+	},
+
 	handleTodo: function(a){
 		alert(a);
 		//add a to the list and render in todolist
@@ -34,7 +43,7 @@ var Main = React.createClass({
 
 		return (
 			<div>
-				<SearchTodo />
+				<SearchTodo onSearch={this.handleSearch}/>
 				<TodoList todos={todos} />
 				<AddTodo getnewtodo={this.handleTodo}/>
 			</div>
