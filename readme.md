@@ -1,1 +1,1 @@
-React BoilerPlate with Karma, Foundation and SASS framework.
+React Todo application 
