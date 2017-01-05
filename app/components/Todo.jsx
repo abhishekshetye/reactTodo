@@ -5,9 +5,11 @@ var Todo = React.createClass({
 
 	render: function(){
 
+		var {text} = this.props;
+
 		return (
 			<div>
-				<h1 className='text-center'></h1>
+				<h3>{text}</h3>
 			</div>
 			);
 
