@@ -7,3 +7,15 @@
 		<Link to="/countdown">Coutdown</Link>
 	</div>
 </div>
+
+
+<h1 className="page-title">Todo App</h1>
+<div className="row">
+	<div className="column small-centered small-11 medium-6 small-5">
+		<div className="container">
+			<SearchTodo onSearch={this.handleSearch}/>
+			<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+			<AddTodo getnewtodo={this.handleTodo}/>
+		</div>
+	</div>
+</div>

@@ -38,6 +38,15 @@ var Main = React.createClass({
 		});
 	},
 
+
+	getCompletedTasks: function(){
+		var count=0;
+		this.state.todos.map((todo) => {
+			count =  todo.completed? count + 1 : count;
+		});
+		return count + " tasks completed";
+	},
+
 	handleSearch: function(showCompeleted, searchText){
 		this.setState({
 			showCompeleted: showCompeleted,
@@ -67,11 +76,19 @@ var Main = React.createClass({
 		var {todos, showCompeleted, searchText} = this.state;
 		var filteredTodos = TodoAPI.filterTodos(todos, showCompeleted, searchText);
 
+
 		return (
 			<div>
-				<SearchTodo onSearch={this.handleSearch}/>
-				<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
-				<AddTodo getnewtodo={this.handleTodo}/>
+				<h1 className="page-title">Todo App </h1>
+				<div className="row">
+					<div className="column small-centered small-11 medium-6 small-5">
+						<div className="container">
+							<SearchTodo onSearch={this.handleSearch}/>
+							<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+							<AddTodo getnewtodo={this.handleTodo}/>
+						</div>
+					</div>
+				</div>
 			</div>
 			);
 
