@@ -60,12 +60,13 @@ var Main = React.createClass({
 
 	render: function(){
 
-		var {todos} = this.state;
+		var {todos, showCompeleted, searchText} = this.state;
+		var filteredTodos = TodoAPI.filterTodos(todos, showCompeleted, searchText);
 
 		return (
 			<div>
 				<SearchTodo onSearch={this.handleSearch}/>
-				<TodoList todos={todos} onToggle={this.handleToggle}/>
+				<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
 				<AddTodo getnewtodo={this.handleTodo}/>
 			</div>
 			);
