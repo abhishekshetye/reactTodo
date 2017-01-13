@@ -2,6 +2,7 @@ var React = require('react');
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
 var SearchTodo = require('SearchTodo');
+var uuid = require('node-uuid');
 
 var Main = React.createClass({
 
@@ -13,16 +14,32 @@ var Main = React.createClass({
 			todos: [
 
 			{
-				id:1,
-				text: 'walk the dog'
+				id: uuid(),
+				text: 'walk the dog',
+				completed: false
 			},{
-				id:2,
-				text: 'walk the cat'
+				id: uuid(),
+				text: 'walk the cat',
+				completed: true
 			}
 
 			]
 		};
 
+	},
+
+	handleToggle: function(id){
+		var updatedTodos = this.state.todos.map((todo) => {
+			if(todo.id === id ){
+				todo.completed = !todo.completed;
+			}
+
+			return todo;
+		});
+
+		this.setState({
+			todos: updatedTodos
+		});
 	},
 
 	handleSearch: function(showCompeleted, searchText){
@@ -33,8 +50,18 @@ var Main = React.createClass({
 	},
 
 	handleTodo: function(a){
-		alert(a);
+		
 		//add a to the list and render in todolist
+		this.setState({
+			todos: [
+				...this.state.todos,
+				{
+					id: uuid(),
+					text: a,
+					completed: false
+				}
+			]
+		})
 	},
 
 	render: function(){
@@ -44,7 +71,7 @@ var Main = React.createClass({
 		return (
 			<div>
 				<SearchTodo onSearch={this.handleSearch}/>
-				<TodoList todos={todos} />
+				<TodoList todos={todos} onToggle={this.handleToggle}/>
 				<AddTodo getnewtodo={this.handleTodo}/>
 			</div>
 			);
