@@ -41,6 +41,13 @@ export var todoReducer = (state = [], action) => {
 			return news;
 
 
+		case 'ADD_TODOS':
+			return [
+				...state,
+				...action.initialTodos
+			]
+
+
 		case 'ADD_TODO':
 			return [
 				...state,

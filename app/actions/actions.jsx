@@ -29,5 +29,12 @@ export var toggleTodo = (id) => {
 	}
 }
 
+export var addTodos = (initialTodos) => {
+	return {
+		type: 'ADD_TODOS',
+		initialTodos
+	}
+}
+
 
 

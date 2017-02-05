@@ -14,12 +14,12 @@ export var Todo = React.createClass({
 			if(completedAt === undefined){
 				var message = 'Created at ';
 				var timestamp = createdAt;
-				return message + moment.unix(timestamp).format('DDD Do YYYY @ h:mm a');
+				return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
 			}
 			else{
 				message = 'Completed '
 				var timestamp = completedAt;
-				return message + moment.unix(timestamp).format('DDD Do YYYY @ h:mm a');
+				return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
 			}
 		};
 
