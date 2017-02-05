@@ -16,8 +16,8 @@ store.subscribe(() => {
 })
 
 store.dispatch(actions.addTodo('clean the yard'))
-store.dispatch(actions.setSearchText('yard'))
-store.dispatch(actions.toggleShowCompleted())
+//store.dispatch(actions.setSearchText('yard'))
+//store.dispatch(actions.toggleShowCompleted())
 
 $(document).ready(function($) {
     $(document).foundation();

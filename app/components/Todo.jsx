@@ -12,7 +12,7 @@ export var Todo = React.createClass({
 
 		var renderDate = () => {
 			if(completedAt === undefined){
-				var message = 'Created ';
+				var message = 'Created at ';
 				var timestamp = createdAt;
 				return message + moment.unix(timestamp).format('DDD Do YYYY @ h:mm a');
 			}

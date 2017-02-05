@@ -48,7 +48,7 @@ export var todoReducer = (state = [], action) => {
 					id: uuid(),
 					text: action.text,
 					completed: false,
-					created_at: moment().unix(),
+					createdAt: moment().unix(),
 					completedAt: undefined
 				}
 			]
