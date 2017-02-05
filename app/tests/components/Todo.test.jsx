@@ -1,10 +1,14 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var {Provider} = require('react-redux');
 var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 
+var configureStore = require('configureStore');
+import TodoList from 'TodoList'
+//var TodoList = require('TodoList');
 var TodoApp = require('Main');
 
 describe('TodoApp', ()=>{
@@ -13,55 +17,19 @@ describe('TodoApp', ()=>{
 	});
 
 
-	it('should toggle completed value when toggle called', ()=>{
-		var todoData = {
-			id: 11,
-			text: 'Test',
-			completed: false
-		};
-		var todoapp = TestUtils.renderIntoDocument(<TodoApp/>);
-		todoapp.setState({todos: [todoData]});
-		expect(todoapp.state.todos[0].completed).toBe(false);
+	it('should render todo list ', () => {
+		var store = configureStore.configure();
+		var provider = TestUtils.renderIntoDocument(
+				<Provider store={store}>
+					<TodoApp/>
+				</Provider>
+			);
 
-		todoapp.handleToggle(11);
-		expect(todoapp.state.todos[0].completed).toBe(true);
+		var todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
+		var todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
 
-	});
+		expect(todoList.length).toEqual(1);
 
-	it('should toggle completed value when handleToggle is called', ()=>{
-		var todoData = {
-			id: 11,
-			text: 'Features',
-			createAt: 0,
-			completed: false,
-			completedAt: undefined
-		};
-
-		var todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
-		todoApp.setState({todos: [todoData]});
-
-		expect(todoApp.state.todos[0].completed).toBe(false);
-		todoApp.handleToggle(11);
-		expect(todoApp.state.todos[0].completed).toBe(true);
-	});
-
-	it('when toggle from true to false completedAt get removed', ()=>{
-		var todoData = {
-			id: 11,
-			text: 'Features',
-			createAt: 0,
-			completed: false,
-			completedAt: undefined
-		};
-
-		var todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
-		todoApp.setState({todos: [todoData]});
-
-		todoApp.handleToggle(11);
-		expect(todoApp.state.todos[0].completedAt).toNotEqual(undefined);
-		todoApp.handleToggle(11);
-		expect(todoApp.state.todos[0].completedAt).toEqual(undefined);
-		
 	});
 });
 
